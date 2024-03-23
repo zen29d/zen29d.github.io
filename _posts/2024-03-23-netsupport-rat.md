@@ -30,18 +30,18 @@ You can observe *name obfuscation*, but disregarding the naming convention and f
 I utilized regex in Python to extract the key and payload, which comprise continuous numeric values. It took some trial and error to refine the regex pattern, as this was my first time using regex in Python.
 ![](assets/images/netsupport_rat/extract_payload_1.png)
 
-After performing subtraction decoding, obtained PowerShell code, which undergoes two-stage wrapping processes involving AES encryption and compression. Upon inspecting the code, it becomes evident that AES in ECB mode is used for encryption followed by GZip compression.
+After performing subtraction decoding, obtained PowerShell code, which undergoes two-stage wrapping processes involving Advanced Encryption Standard (AES) and compression. Upon inspecting the code, it becomes evident that AES in Electronic Code Book (ECB) mode is used for encryption followed by GZip compression.
 ![](assets/images/netsupport_rat/decoding_payload_1.png)
 
-If we examine the decoded code snippet, it reveals the presence of two variables containing base64-encoded data, which are certainly encrypted using a key. Notably, certain key components are highlighted, aiding in the identification of AES encryption parameters such as AES mode, IV, encryption key, and the encrypted payload. Subsequently, the decrypted code undergoes GZip decompression.
+If we examine the decoded code snippet, it reveals the presence of two variables containing base64-encoded data, which are certainly encrypted using a key. Notably, certain key components are highlighted, aiding in the identification of AES encryption parameters such as AES mode, Initialization Vector (IV), encryption key, and the encrypted payload. Subsequently, the decrypted code undergoes GZip decompression.
 ![](assets/images/netsupport_rat/decoded_stage_1.png)
 
 Now, let's see how we can accomplish this with Python. We'll once again use regex to extract the base64 encoded data. The regex pattern will extract two base64 encoded strings, with the first one likely being the encrypted code and the second one representing the key as its size is 256 bytes,`len(b64decode(aes_key))*8`.
 ![](assets/images/netsupport_rat/extract_base64.png)
 
-I utilized the cipher module to decrypt the payload. Dropped the first 16 bytes from the payload, which represent the Initialization Vector (IV). Then, initialized AES with ECB mode. After decryption, knowing that the data would undergo decompression, I dumped the hexadecimal content to identify the magic bytes of Gzip, which are `1F 8B`. This was confirmed by checking the file type.
+I utilized the cipher module to decrypt the payload. Dropped the first 16 bytes from the payload, which represent the IV. Then, initialized AES with ECB mode. After decryption, knowing that the data would undergo decompression, I dumped the hexadecimal content to identify the magic bytes of Gzip, which are `1F 8B`. This was confirmed by checking the file type.
 
-> _Note: In Electronic Codebook (ECB) mode, the Initialization Vector (IV) is not required. ECB mode does not use an IV because it encrypts each block of plaintext independently, without any dependence on previous blocks._
+> _Note: In Electronic Codebook mode, the Initialization Vector is not required. ECB mode does not use an IV because it encrypts each block of plaintext independently, without any dependence on previous blocks._
 
 ![](assets/images/netsupport_rat/decryption.png)
 
@@ -55,7 +55,7 @@ We once again received the PowerShell code, which again used subtraction decodin
 This marks the final stage of payload extraction and decoding...
 ![](assets/images/netsupport_rat/stage_3.png)
 
-Voila!, we have malicious URLs.
+Voila! we have malicious URLs.
 ![](assets/images/netsupport_rat/ioc.png)
 
 Here's a summarized overview of the process:
