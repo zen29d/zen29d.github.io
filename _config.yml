@@ -16,7 +16,7 @@ timezone:
 
 title: Binary Panda # the main title
 
-tagline: 0xNull # it will display as the sub-title
+tagline: "0x7A656E323964" # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
   blog, binarypanda, github
@@ -37,8 +37,7 @@ social:
   name: Binary Panda
   links:
     # The first element serves as the copyright owner's link
-    - https://github.com/username
-    - https://www.linkedin.com/in/username
+    - https://www.linkedin.com/in/zen29d
 
 google_site_verification: # fill in to your verification string
 
