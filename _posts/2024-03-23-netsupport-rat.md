@@ -12,7 +12,7 @@ tags: [rat, netsupport, decoding]
 
 NetSupport Manager is a legitimate application designed to facilitate remote technical support or provide assistance with remote computers. Unfortunately, this application has been exploited and repurposed as a Remote Access Trojan (RAT) for malicious campaigns.
 
-I utilized Python to decode the sample and extract the malicious URLs. Please note that this is not the complete sample analyis from execution prespective. I drew inspiration after [`watching`](https://youtu.be/CIg4TXFJRK0), but opted to leverage Python to assess its efficacy in proccessing the payload, resulting in the creation of a jupyter [notebook](https://github.com/zen29d/zen29d.github.io/blob/main/assets/other/NetSupport_RAT_Decoding.ipynb).
+I utilized Python to decode the sample and extract the malicious URLs. Please note that this is not the complete sample analysis from an execution perspective. I drew inspiration after [`watching`](https://youtu.be/CIg4TXFJRK0), but opted to leverage Python to assess its efficacy in processing the payload, resulting in the creation of a jupyter [notebook](https://github.com/zen29d/zen29d.github.io/blob/main/assets/other/NetSupport_RAT_Decoding.ipynb).
 
 
 `Download` [`Sample`](https://bazaar.abuse.ch/sample/befc7ebbea2d04c14e45bd52b1db9427afce022d7e2df331779dae3dfe85bfab/?ref=embee-research.ghost.io)
@@ -20,7 +20,7 @@ I utilized Python to decode the sample and extract the malicious URLs. Please no
 First, will load the sample by reading the contents of the file.
 ![](assets/images/netsupport_rat/load_sample.png)
 
-I verifed the hash on [VirusTotal](https://www.virustotal.com/gui/file/2d48b04eb26654eaf3c4431d190257e46c409339426d75e0f0e2ac074dfbab6f) to assess its maliciousness and cross validate the sample.
+I verified the hash on [VirusTotal](https://www.virustotal.com/gui/file/2d48b04eb26654eaf3c4431d190257e46c409339426d75e0f0e2ac074dfbab6f) to assess its maliciousness and cross-validate the sample.
 
 ![](assets/images/netsupport_rat/virustotal.png) 
 
@@ -30,7 +30,7 @@ You can observe *name obfuscation*, but disregarding the naming convention and f
 I utilized regex in Python to extract the key and payload, which comprise continuous numeric values. It took some trial and error to refine the regex pattern, as this was my first time using regex in Python.
 ![](assets/images/netsupport_rat/extract_payload_1.png)
 
-After performing subtraction decoding, obtained PowerShell code, which undergoes two stage wraping process involving AES encryption and compression. Upon inspecting the code, it becomes evident that AES in ECB mode is used for encryption followed by GZip compression.
+After performing subtraction decoding, obtained PowerShell code, which undergoes two-stage wrapping processes involving AES encryption and compression. Upon inspecting the code, it becomes evident that AES in ECB mode is used for encryption followed by GZip compression.
 ![](assets/images/netsupport_rat/decoding_payload_1.png)
 
 If we examine the decoded code snippet, it reveals the presence of two variables containing base64-encoded data, which are certainly encrypted using a key. Notably, certain key components are highlighted, aiding in the identification of AES encryption parameters such as AES mode, IV, encryption key, and the encrypted payload. Subsequently, the decrypted code undergoes GZip decompression.
