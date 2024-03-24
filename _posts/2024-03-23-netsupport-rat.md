@@ -12,10 +12,11 @@ tags: [rat, netsupport, decoding]
 
 NetSupport Manager is a legitimate application designed to facilitate remote technical support or provide assistance with remote computers. Unfortunately, this application has been exploited and repurposed as a Remote Access Trojan (RAT) for malicious campaigns.
 
-I utilized Python to decode the sample and extract the malicious URLs. Please note that this is not the complete sample analysis from an execution perspective. I drew inspiration after [`watching`](https://youtu.be/CIg4TXFJRK0), but opted to leverage Python to assess its efficacy in processing the payload, resulting in the creation of a jupyter [notebook](https://github.com/zen29d/zen29d.github.io/blob/main/assets/other/NetSupport_RAT_Decoding.ipynb).
+I utilized Python to decode the sample and extract the malicious URLs. Please note that this is not the complete sample analysis from an execution perspective. I drew inspiration after [`watching`](https://youtu.be/CIg4TXFJRK0), but opted to leverage Python to assess its efficacy in processing the payload, resulting in the creation of a jupyter [notebook](/assets/other/NetSupport_RAT_Decoding.ipynb).
 
 
-`Download` [`Sample`](https://bazaar.abuse.ch/sample/befc7ebbea2d04c14e45bd52b1db9427afce022d7e2df331779dae3dfe85bfab/?ref=embee-research.ghost.io)
+> [`Download the sample`](https://bazaar.abuse.ch/sample/befc7ebbea2d04c14e45bd52b1db9427afce022d7e2df331779dae3dfe85bfab/?ref=embee-research.ghost.io)  __`Hash:`__`f0e76bfcc9c7d043ecbe36d6a7dedb7738722171`
+{: .prompt-warning }
 
 First, will load the sample by reading the contents of the file.
 ![](assets/images/netsupport_rat/load_sample.png)
