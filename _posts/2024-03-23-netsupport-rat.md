@@ -41,7 +41,8 @@ Now, let's see how we can accomplish this with Python. We'll once again use rege
 
 I utilized the cipher module to decrypt the payload. Dropped the first 16 bytes from the payload, which represent the IV. Then, initialized AES with ECB mode. After decryption, knowing that the data would undergo decompression, I dumped the hexadecimal content to identify the magic bytes of Gzip, which are `1F 8B`. This was confirmed by checking the file type.
 
-> _Note: In Electronic Codebook mode, the Initialization Vector is not required. ECB mode does not use an IV because it encrypts each block of plaintext independently, without any dependence on previous blocks._
+> _In Electronic Codebook mode, the Initialization Vector is not required. ECB mode does not use an IV because it encrypts each block of plaintext independently, without any dependence on previous blocks._
+{: .prompt-tip }
 
 ![](assets/images/netsupport_rat/decryption.png)
 
