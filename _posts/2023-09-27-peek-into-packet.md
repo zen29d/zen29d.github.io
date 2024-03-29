@@ -20,7 +20,7 @@ Requirements:
 
 ## Prepare RPi3
 
-I used [Pi Imager]([text](https://www.raspberrypi.com/software/)) to install the Raspbian OS, open and navigate [ Choose OS > Raspberry Pi OS (other) > Raspberry Pi OS Lite (64-bit) ] and click on the gear button to set up hostname, user, and credentials.
+I used [Pi Imager]([text](https://www.raspberrypi.com/software)) to install the Raspbian OS, open and navigate [ Choose OS > Raspberry Pi OS (other) > Raspberry Pi OS Lite (64-bit) ] and click on the gear button to set up hostname, user, and credentials.
 
 Connect the RPi to your network, find its IP using gateway UI, and SSH into, using the above-configured user and password, and update the repository.
 
