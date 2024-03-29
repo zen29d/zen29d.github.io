@@ -11,7 +11,7 @@ Owning a home network may not be at that Risk, but if you are a security enthusi
 
 > So, What is NIDS? 📖
 
-Well, Wiki has a better answer 😁, [IDS](https://en.wikipedia.org/wiki/Intrusion_detection_system). Will use [Suricata](https://suricata.io/) for NIDS and integrate it with [Wazuh](https://wazuh.com/) for visibility. If you don't have Wazuh setup, you can skip this part.
+Well, [Wiki](https://en.wikipedia.org/wiki/Intrusion_detection_system) has a better answer 😁. Will use [Suricata](https://suricata.io/) for NIDS and integrate it with [Wazuh](https://wazuh.com/) for visibility. If you don't have Wazuh setup, you can skip this part.
 
 Requirements:
 - RPi with 16 GB Memory Card (4 Core, 1 GB RAM)
@@ -162,7 +162,7 @@ By default suricata work as IDS. There are two ways to respond to threats, eithe
 
 ## Then there is the performance
 
-System: Since RPi is low performance computer, you will see some packet drops, though it's tuneable.
+Since RPi is low performance computer, you will see some packet drops, though it's tuneable.
 
 ![](assets/images/peek_into_packet/1695822661694.png)
 
