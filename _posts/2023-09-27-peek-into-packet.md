@@ -151,9 +151,6 @@ systemctl daemon-reload
 systemctl enable wazuh-agent
 systemctl start wazuh-agent
 systemctl status wazuh-agent
-Minimize image
-Edit image
-Delete image
 ```
 
 ## Active response
