@@ -166,7 +166,8 @@ systemctl daemon-reload
 systemctl enable wazuh-agent
 systemctl start wazuh-agent
 systemctl status wazuh-agent
-```{: .nolineno }
+```
+{: .nolineno }
 
 ## Active response
 
