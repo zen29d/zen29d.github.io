@@ -161,12 +161,12 @@ Also change the "File Integrity" disabled value from no to yes, since it will cr
 
 
 Enable and start the Wazuh service and verify the service
-```shell
+```bash
 systemctl daemon-reload
 systemctl enable wazuh-agent
 systemctl start wazuh-agent
 systemctl status wazuh-agent
-```
+```{: .nolineno }
 
 ## Active response
 
