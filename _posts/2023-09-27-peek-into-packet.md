@@ -24,55 +24,60 @@ I used [Pi Imager](https://www.raspberrypi.com/software/) to install the Raspbia
 
 Connect the RPi to your network, find its IP using gateway UI, and SSH into, using the above-configured user and password, and update the repository.
 
-`# apt update && apt upgrade`
-
+```shell
+apt update && apt upgrade
+```
 ## Install & Configure Suricata
 
 Search if the package is available for ARM build, you will see the package availability, version, and dependency. (execute the command as sudo privilege)
 
-`# apt info suricata -y`
-
+```shell
+apt info suricata -y
+```
 ![](assets/images/peek_into_packet/1695761532162.png)
 
 
 Install the package and enable the suricata service
 
-```
-# apt install suricate
-# systemctl enable suricata
+```shell
+apt install suricate
+systemctl enable suricata
 ```
 
 Configure the suricata.yaml using nano or vi
 
-`# nano /etc/suricata/suricata.yaml`
-
+```shell
+nano /etc/suricata/suricata.yaml
+```
 Change the following, Home_Network_IP_Range is the network range you have defined, 10.0.0.0/8 or 172.16.0.0/16 or 192.168.0.0/24 or any other custom range. Interface_Name, on which it will inspect the network packets, by default raspbian interface starts with eth*, you can find it by ifconfig or ip addr.
 
-```
+```shell
 HOME_NET:"[10.0.0./24]"
 interface: eth01
 ```
 Now, restart the service and check the status
 
-`# systemctl restart suricata && systemctl status suricata`
+```shell
+systemctl restart suricata && systemctl status suricata
+```
 
 ![](assets/images/peek_into_packet/1695820971556.png)
 
 
 Load the rules, it will take some time to complete, depending on the size of the rules
-```
-# systemctl stop suricata
-# suricata-update -o /etc/suricata/rules
+```shell
+systemctl stop suricata
+suricata-update -o /etc/suricata/rules
 ```
 ![](assets/images/peek_into_packet/1695821084854.png)
 
 
 After loading the rules, test the rules. It will provide information about how many rules were loaded and how many failed.
 
-```
-# suricata -v -T -c /etc/suricata/suricata.yml
+```shell
+suricata -v -T -c /etc/suricata/suricata.yml
 (-v: Verbose, -T: Test, -c: Configuration)
-# systemctl start suricate
+systemctl start suricate
 ```
 ![](assets/images/peek_into_packet/1695821255705.png)
 
@@ -81,18 +86,24 @@ After loading the rules, test the rules. It will provide information about how m
 
 nslookup command is not installed by default. For test purposes, execute the command directly on IPS, because I'm still waiting for Switch (with Port Mirror) to be delivered.
 
-`apt install dnsutils`
+```shell
+apt install dnsutils
+```
 
 Then execute the following command
 
-`nslookup 3wzn5p2yiumh7akj.onioncurl http://testmynids.org/uid/index.html`
+```shell
+nslookup 3wzn5p2yiumh7akj.onioncurl http://testmynids.org/uid/index.html
+```
 
 ![](assets/images/peek_into_packet/1695821531732.png)
 
 
 Check the logs, you will see the alerts related to the above detection 
 
-`tail /var/log/suricata/fast.log`
+```shell
+tail /var/log/suricata/fast.log
+```
 
 ![](assets/images/peek_into_packet/1695821622903.png)
 
@@ -103,7 +114,9 @@ If Wazuh is available, you can see the Alerts
 
 DOS Attack
 
-`hping3 -S --flood -V -p 8000 <IDS_IP>`
+```shell
+hping3 -S --flood -V -p 8000 <IDS_IP>
+```
 
 ![](assets/images/peek_into_packet/1695823146149.png)
 
@@ -114,13 +127,13 @@ If you have Wazuh server already setup, you can configure the [Wazuh Agent](http
 
 Install the GPG key:
 
-```
+```shell
 curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | gpg --no-default-keyring --keyring gnupg-ring:/usr/share/keyrings/wazuh.gpg --import && chmod 644 /usr/share/keyrings/wazuh.gpg
 ```
 
 Add the repository:
 
-```
+```shell
 echo "deb [signed-by=/usr/share/keyrings/wazuh.gpg] https://packages.wazuh.com/4.x/apt/ stable main" | tee -a /etc/apt/sources.list.d/wazuh.list
 ```
 Update the package and install the Wazuh agent with the Wazuh server IP
@@ -130,7 +143,9 @@ WAZUH_MANAGER="10.0.0.20" apt install wazuh-agent
 ```
 Configure the ossec.conf on this and append the below config
 
-`nano /var/ossec/etc/ossec.conf`
+```shell
+nano /var/ossec/etc/ossec.conf
+```
 ```
 <localfile>
   <log_format>json</log_format>   
@@ -146,7 +161,7 @@ Also change the "File Integrity" disabled value from no to yes, since it will cr
 
 
 Enable and start the Wazuh service and verify the service
-```
+```shell
 systemctl daemon-reload
 systemctl enable wazuh-agent
 systemctl start wazuh-agent
