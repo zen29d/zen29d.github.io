@@ -2,7 +2,7 @@
 title: Peek Into Packet
 date: 2023-09-27 19:00:00 +0530
 categories: [Lab]
-tags: [detection, nids, suricata]
+tags: [detection, nids, suricata,lab]
 ---
 
 ![](assets/images/peek_into_packet/1695761189501.jpg)

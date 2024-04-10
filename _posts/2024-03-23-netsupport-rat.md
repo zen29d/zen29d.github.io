@@ -2,7 +2,7 @@
 title: NetSupport RAT
 date: 2024-03-23 11:15:00 +0530
 categories: [Malware]
-tags: [rat, netsupport, decoding]
+tags: [rat, decoding, malware]
 ---
 
 
