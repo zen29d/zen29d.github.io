@@ -20,18 +20,18 @@ Requirements:
 
 ## Prepare RPi3
 
-I used [Pi Imager](https://www.raspberrypi.com/software/) to install the Raspbian OS, open and navigate [ Choose OS > Raspberry Pi OS (other) > Raspberry Pi OS Lite (64-bit) ] and click on the gear button to set up hostname, user, and credentials.
+I used [Pi Imager](https://www.raspberrypi.com/software/) to install the Raspbian OS, other option are also available [balenaEtcher](https://etcher.balena.io); After selecting the device, <kbd>Choose OS</kbd>><kbd>Raspberry Pi OS (other)</kbd>><kbd>Raspberry Pi OS Lite (64-bit)</kbd> and click on the gear button to customize hostname, user, and credentials.
 
 Connect the RPi to your network, find its IP using gateway UI, and SSH into, using the above-configured user and password, and update the repository.
 
-```shell
+```bash
 apt update && apt upgrade
 ```
 ## Install & Configure Suricata
 
 Search if the package is available for ARM build, you will see the package availability, version, and dependency. (execute the command as sudo privilege)
 
-```shell
+```bash
 apt info suricata -y
 ```
 ![](assets/images/peek_into_packet/1695761532162.png)
@@ -39,25 +39,25 @@ apt info suricata -y
 
 Install the package and enable the suricata service
 
-```shell
+```bash
 apt install suricate
 systemctl enable suricata
 ```
 
 Configure the suricata.yaml using nano or vi
 
-```shell
+```bash
 nano /etc/suricata/suricata.yaml
 ```
 Change the following, Home_Network_IP_Range is the network range you have defined, 10.0.0.0/8 or 172.16.0.0/16 or 192.168.0.0/24 or any other custom range. Interface_Name, on which it will inspect the network packets, by default raspbian interface starts with eth*, you can find it by ifconfig or ip addr.
 
-```shell
+```
 HOME_NET:"[10.0.0./24]"
 interface: eth01
 ```
 Now, restart the service and check the status
 
-```shell
+```bash
 systemctl restart suricata && systemctl status suricata
 ```
 
@@ -65,7 +65,7 @@ systemctl restart suricata && systemctl status suricata
 
 
 Load the rules, it will take some time to complete, depending on the size of the rules
-```shell
+```bash
 systemctl stop suricata
 suricata-update -o /etc/suricata/rules
 ```
@@ -74,11 +74,12 @@ suricata-update -o /etc/suricata/rules
 
 After loading the rules, test the rules. It will provide information about how many rules were loaded and how many failed.
 
-```shell
+```bash
 suricata -v -T -c /etc/suricata/suricata.yml
-(-v: Verbose, -T: Test, -c: Configuration)
 systemctl start suricate
 ```
+> -v: Verbose,    -T: Test,    -c: Configuration
+{: .prompt-info }
 ![](assets/images/peek_into_packet/1695821255705.png)
 
 
@@ -86,13 +87,13 @@ systemctl start suricate
 
 nslookup command is not installed by default. For test purposes, execute the command directly on IPS, because I'm still waiting for Switch (with Port Mirror) to be delivered.
 
-```shell
+```bash
 apt install dnsutils
 ```
 
 Then execute the following command
 
-```shell
+```bash
 nslookup 3wzn5p2yiumh7akj.onioncurl http://testmynids.org/uid/index.html
 ```
 
@@ -101,7 +102,7 @@ nslookup 3wzn5p2yiumh7akj.onioncurl http://testmynids.org/uid/index.html
 
 Check the logs, you will see the alerts related to the above detection 
 
-```shell
+```bash
 tail /var/log/suricata/fast.log
 ```
 
@@ -114,7 +115,7 @@ If Wazuh is available, you can see the Alerts
 
 DOS Attack
 
-```shell
+```bash
 hping3 -S --flood -V -p 8000 <IDS_IP>
 ```
 
@@ -127,23 +128,24 @@ If you have Wazuh server already setup, you can configure the [Wazuh Agent](http
 
 Install the GPG key:
 
-```shell
+```bash
 curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | gpg --no-default-keyring --keyring gnupg-ring:/usr/share/keyrings/wazuh.gpg --import && chmod 644 /usr/share/keyrings/wazuh.gpg
 ```
 
 Add the repository:
 
-```shell
+```bash
 echo "deb [signed-by=/usr/share/keyrings/wazuh.gpg] https://packages.wazuh.com/4.x/apt/ stable main" | tee -a /etc/apt/sources.list.d/wazuh.list
 ```
+
 Update the package and install the Wazuh agent with the Wazuh server IP
-```
+```bash
 apt update
 WAZUH_MANAGER="10.0.0.20" apt install wazuh-agent
 ```
-Configure the ossec.conf on this and append the below config
 
-```shell
+Configure the ossec.conf on this and append the below config
+```bash
 nano /var/ossec/etc/ossec.conf
 ```
 ```
