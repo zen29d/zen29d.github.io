@@ -3,13 +3,12 @@ title: NetSupport RAT
 date: 2024-03-23 11:15:00 +0530
 categories: [Malware]
 tags: [rat, decoding, malware]
+image:
+  path: assets/images/netsupport_rat/netsupport_rat_decoding.png
 ---
 
 
 ## NetSupport RAT Decoding and Analysis
-
-![](assets/images/netsupport_rat/netsupport_rat_decoding.png)
-
 NetSupport Manager is a legitimate application designed to facilitate remote technical support or provide assistance with remote computers. Unfortunately, this application has been exploited and repurposed as a Remote Access Trojan (RAT) for malicious campaigns.
 
 I utilized Python to decode the sample and extract the malicious URLs. Please note that this is not the complete sample analysis from an execution perspective. I drew inspiration after [`watching`](https://youtu.be/CIg4TXFJRK0), but opted to leverage Python to assess its efficacy in processing the payload, resulting in the creation of a jupyter [notebook](/assets/other/NetSupport_RAT_Decoding.ipynb).

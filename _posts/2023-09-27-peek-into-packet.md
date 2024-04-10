@@ -3,9 +3,9 @@ title: Peek Into Packet
 date: 2023-09-27 19:00:00 +0530
 categories: [Lab]
 tags: [detection, nids, suricata,lab]
+image:
+  path: assets/images/peek_into_packet/1695761189501.jpg
 ---
-
-![](assets/images/peek_into_packet/1695761189501.jpg)
 
 Owning a home network may not be at that Risk, but if you are a security enthusiast and own a Raspberry Pi, it's worth implementing the NIDS and observing the suspicious/malicious network communication.
 
