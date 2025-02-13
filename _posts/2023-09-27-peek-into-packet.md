@@ -94,7 +94,8 @@ apt install dnsutils
 Then execute the following command
 
 ```bash
-nslookup 3wzn5p2yiumh7akj.onioncurl http://testmynids.org/uid/index.html
+nslookup 3wzn5p2yiumh7akj.onion
+curl http://testmynids.org/uid/index.html
 ```
 
 ![](assets/images/peek_into_packet/1695821531732.png)
