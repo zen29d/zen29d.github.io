@@ -1,8 +1,11 @@
 ---
-title: "The Silent Leak: How an AI Coding Agent Surfaces Credentials in Plaintext"
+title: "The Silent Leak: How AI Agent Surfaces Credentials in Plaintext"
 date: 2026-07-31 11:00:00 +0530
 categories: [Security]
 tags: [ai-agents, credentials, mitre-attack, llm]
+image:
+  path: assets/images/silent_leak/cover.svg
+  alt: An abstract padlock with a single teal drip leaking from its keyhole
 ---
 
 <p class="pf-eyebrow" markdown="0">01: THE INCIDENT</p>
