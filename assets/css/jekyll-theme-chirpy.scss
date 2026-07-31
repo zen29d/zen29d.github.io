@@ -1,0 +1,37 @@
+---
+---
+
+@import 'main';
+
+/* append your custom style below */
+
+/* Widen the main content column (variable-based override doesn't reach
+   here since main.scss lives inside the theme gem, not this site). */
+#main-wrapper > .container,
+#search-result-wrapper {
+  max-width: 1600px !important;
+}
+
+@media (min-width: 1650px) {
+  #back-to-top {
+    right: calc((100vw - 300px - 1600px) / 2 + 2rem);
+  }
+
+  search {
+    margin-right: calc(1600px / 4 - 200px - 0.75rem);
+  }
+}
+
+/* Let long table cells wrap instead of forcing the whole table to scroll
+   horizontally. The theme's own nowrap rule (.table-wrapper > table tbody
+   tr td / thead th) is more specific than a plain "th, td" override, so
+   match its selectors exactly and use !important to guarantee this wins. */
+.table-wrapper > table {
+  min-width: 0 !important;
+
+  thead th,
+  tbody tr td {
+    white-space: normal !important;
+    word-break: break-word !important;
+  }
+}
