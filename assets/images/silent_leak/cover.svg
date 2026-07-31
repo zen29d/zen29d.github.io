@@ -23,6 +23,26 @@
 
   <rect width="1200" height="630" fill="url(#glow)"/>
 
+  <!-- AI agent glyph -->
+  <g>
+    <line x1="330" y1="230" x2="330" y2="212" stroke="#8A9096" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="330" cy="206" r="6" fill="#2DD4C6"/>
+
+    <rect x="285" y="230" width="90" height="70" rx="16"
+          fill="#15171A" stroke="#8A9096" stroke-width="4"/>
+
+    <circle cx="311" cy="263" r="9" fill="#2DD4C6"/>
+    <circle cx="349" cy="263" r="9" fill="#2DD4C6"/>
+
+    <rect x="266" y="308" width="128" height="52" rx="14"
+          fill="#15171A" stroke="#2C2F32" stroke-width="3"/>
+    <line x1="292" y1="330" x2="368" y2="330" stroke="#2C2F32" stroke-width="3" stroke-linecap="round"/>
+    <line x1="292" y1="344" x2="340" y2="344" stroke="#2C2F32" stroke-width="3" stroke-linecap="round"/>
+
+    <line x1="266" y1="322" x2="246" y2="312" stroke="#8A9096" stroke-width="3" stroke-linecap="round"/>
+    <line x1="394" y1="322" x2="414" y2="312" stroke="#8A9096" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
   <!-- padlock shackle -->
   <path d="M 540 250 L 540 210 A 60 60 0 0 1 660 210 L 660 250"
         fill="none" stroke="#8A9096" stroke-width="14" stroke-linecap="round"/>
@@ -34,6 +54,19 @@
   <!-- keyhole -->
   <circle cx="600" cy="305" r="16" fill="#2DD4C6"/>
   <path d="M 592 316 L 608 316 L 616 350 L 584 350 Z" fill="#2DD4C6"/>
+
+  <!-- wave of bits: agent to keyhole -->
+  <g font-family="ui-monospace, Consolas, monospace" font-size="16" fill="#2DD4C6" font-weight="700">
+    <text x="410" y="300" opacity="0.30">1</text>
+    <text x="431" y="316" opacity="0.38">0</text>
+    <text x="452" y="296" opacity="0.46">1</text>
+    <text x="473" y="314" opacity="0.54">1</text>
+    <text x="494" y="298" opacity="0.62">0</text>
+    <text x="515" y="312" opacity="0.70">1</text>
+    <text x="536" y="300" opacity="0.78">0</text>
+    <text x="557" y="310" opacity="0.86">1</text>
+    <text x="578" y="300" opacity="0.94">0</text>
+  </g>
 
   <!-- leak drip -->
   <path d="M 600 350 C 600 400, 585 410, 585 445 C 585 470, 615 470, 615 445 C 615 415, 600 400, 600 350 Z"
