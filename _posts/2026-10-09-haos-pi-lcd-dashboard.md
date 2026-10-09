@@ -165,7 +165,7 @@ _Boot screen while Home Assistant starts_
 
 I took help from an LLM for this part. I knew what I wanted, but not how to get the screen running before Home Assistant itself is up on a locked-down OS. Going back and forth with it gave me the udev and systemd idea, the GPIO handover and the shutdown hook below, and I tested every step on the Pi through a few reboots and a full power-off.
 
-An app can't draw anything until the Supervisor starts it, which is about a minute after power on, so the first minute has to come from the host. The root filesystem of HAOS is read-only, but `/etc/udev/rules.d` is on a persistent partition and the host has Python 3. So a udev rule starts a script as soon as the SPI device appears (wrapped here to make it readable):
+An app can't draw anything until the Supervisor starts it, which is about a minute after power on, so the first minute has to come from the host. The root filesystem of HAOS is read-only, but `/etc/udev/rules.d` is on a persistent partition, and the host already has Python 3. Nothing to install here: the HAOS images for Pi 4 and Pi 5 ship it because the Raspberry Pi EEPROM updater (`rpi-eeprom-config`) is a Python script. So a udev rule starts a script as soon as the SPI device appears (wrapped here to make it readable):
 
 ```
 ACTION=="add", SUBSYSTEM=="spidev", KERNEL=="spidev0.0",
