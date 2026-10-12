@@ -12,6 +12,11 @@ I recently moved my Home Assistant from a Raspberry Pi 3 to a Raspberry Pi 5. It
 
 The Pi had nothing, so the thought was simple, why not Home Assistant too? I wired a Waveshare 1.47-inch LCD to the GPIO header and built a small dashboard for it. It ended up as a Home Assistant app (add-on), so anyone can install it from a repository URL.
 
+This is how it looks in my rack:
+
+![The status screen running in the rack](assets/images/haos_pi_lcd/real_display.jpg)
+_The real screen, 13 minutes after a restart, while some devices were still reconnecting. That's why the badge shows Error_
+
 Requirements:
 - Raspberry Pi 4 or 5 running Home Assistant OS (64-bit)
 - [Waveshare 1.47" LCD Module](https://www.waveshare.com/wiki/1.47inch_LCD_Module) (ST7789V3, 172 × 320), the connecting cable comes with it
@@ -189,6 +194,18 @@ On shutdown, `Before=docker.service` makes systemd stop the unit after all conta
 
 > This part is optional and needs [Option 2](#option-2-host-ssh-on-port-22222). Without it, the boot screen starts when the app starts.
 {: .prompt-info }
+
+## The Case
+
+I didn't want the usual Pi case with every port sticking out, so I designed a closed 10-inch 1U case for it. The screen sits in the middle of the front panel, and the Pi, the Zigbee dongle and the RTC battery are all inside. The network port is a keystone on the front like a switch, and only USB-C power and the Zigbee antenna come out at the back.
+
+![Case front](assets/images/haos_pi_lcd/case_front.png)
+_Front panel: screen in the middle, RJ45 keystone at the right_
+
+![Case inside](assets/images/haos_pi_lcd/case_inside.png)
+_Inside: Pi 5 on brass inserts, Zigbee dongle with its SMA through the rear wall, RTC battery clip_
+
+It prints in four parts (front panel, body, lid and a small retainer for the LCD) and fits a 256 mm bed. I'd print it in PETG or ASA, since a Pi 5 in a closed box gets warm enough to soften PLA. The STL and STEP files, the parts list and assembly steps are in the [repository](https://github.com/zen29d/haos-pi-lcd-dashboard/tree/main/case).
 
 ## Install
 
