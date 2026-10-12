@@ -4,7 +4,7 @@ date: 2026-07-31 11:00:00 +0530
 categories: [Security]
 tags: [ai-agents, credentials, mitre-attack, llm]
 image:
-  path: assets/images/silent_leak/cover.jpg
+  path: /assets/images/silent_leak/cover.jpg
   alt: The Silent Credentials Leak in Plaintext
 ---
 

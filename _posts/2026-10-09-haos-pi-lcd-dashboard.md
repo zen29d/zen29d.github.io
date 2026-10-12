@@ -4,7 +4,7 @@ date: 2026-10-09 18:00:00 +0530
 categories: [Home Automation]
 tags: [home-assistant, raspberry-pi, haos, lcd, python]
 image:
-  path: assets/images/haos_pi_lcd/cover.png
+  path: /assets/images/haos_pi_lcd/cover.png
   alt: HAOS Pi LCD Dashboard showing the System and Devices pages
 ---
 

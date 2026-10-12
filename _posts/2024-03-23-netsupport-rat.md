@@ -4,7 +4,7 @@ date: 2024-03-23 11:15:00 +0530
 categories: [Malware]
 tags: [rat, decoding, malware]
 image:
-  path: assets/images/netsupport_rat/netsupport_rat_decoding.jpg
+  path: /assets/images/netsupport_rat/netsupport_rat_decoding.jpg
 ---
 
 NetSupport Manager is a legitimate application designed to facilitate remote technical support or provide assistance with remote computers. Unfortunately, this application has been exploited and repurposed as a Remote Access Trojan (RAT) for malicious campaigns.
